@@ -146,14 +146,17 @@ def find_top(h, p):
 def solution(h, q):
     results = []
     for i in q:
+        print(f'------------ Start of results for {i}-----------')
         results.append(find_top(h, i))
+        print(f'------------ End of results for {i}-----------\n')
     return results
 
 
 if __name__ == '__main__':
     # print(solution(3, [2]))
-    # print(solution(5, [22]))
+    # print(solution(5, [4]))
     print(solution(3, [7, 3, 5, 1]))
     print(solution(5, [19, 14, 28]))
-    print(solution(5, [19, 14, 22]))
+    # print(solution(5, [19, 14, 22]))
+    # print(solution(5, [4, 14, 22]))
     # print(solution(10, [19, 14, 28]))
