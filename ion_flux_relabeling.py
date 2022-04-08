@@ -79,6 +79,8 @@ def find_top(h, p):
         index = right_most_nodes.index(p)
         return right_most_nodes[index + 1]
 
+    # if we cannot find it in the left-most and right-most nodes
+    # we should draw the tree and check one by one
     levels = []
     for i in range(0, h):
         levels.append([])
@@ -89,11 +91,25 @@ def find_top(h, p):
     while value <= max_nodes:
         levels[current_level].append(int(value))
         value += 1
-        # check upper levels
+        # after inserting the value check where to insert the next value
         continue_up = True
         while continue_up:
+            # check current level for p
+            try:
+                index_of_p = levels[current_level].index(p)
+                if current_level-1 < 0:
+                    return - 1
+                # check if the parent already reach the expected number of nodes
+                # round up so that we can get the correct number since the node can be the left node
+                # for e.g. 1 node -> we expect 1 node on the parent level but 1/2 = 0.5
+                expected_parent_level_nodes = int((index_of_p+1) / 2) + ((index_of_p+1) % 2 > 0)
+                if expected_parent_level_nodes == len(levels[current_level-1]):
+                    return levels[current_level-1][len(levels[current_level-1])-1]
+            except ValueError:
+                # print("Cannot find " + str(p) + " at " + str(levels[current_level]))
+                pass
             # print(str(current_level) + ' ' + str(levels[current_level]))
-            expected_parent_level_nodes1 = int(len(levels[current_level]) / 2)
+            expected_parent_level_nodes = int(len(levels[current_level]) / 2)
             # if hit the top, reset current level to bottom
             if current_level == 0:
                 current_level = h - 1
@@ -101,7 +117,7 @@ def find_top(h, p):
                 continue
             # if the number of parent node does not correspond the child nodes (1 parent to 2 child (left & right)
             # set current level to the level of the parent node to insert the node
-            elif expected_parent_level_nodes1 != len(levels[current_level-1]):
+            elif expected_parent_level_nodes != len(levels[current_level-1]):
                 current_level -= 1
                 continue_up = False
                 continue
@@ -112,19 +128,19 @@ def find_top(h, p):
         # print('Add next node at ' + str(current_level))
         # print('-------------------------------')
 
-    for level in levels:
-        print(level)
+    # for level in levels:
+    #     print(level)
 
 
-def solution(h, p):
+def solution(h, q):
     results = []
-    for i in p:
+    for i in q:
         results.append(find_top(h, i))
     return results
 
 
 if __name__ == '__main__':
-    print(solution(5, [2]))
-    # print(solution(5, [29]))
-    # print(solution(3, [7, 3, 5, 1]))
-    # print(solution(5, [19, 14, 28]))
+    # print(solution(3, [2]))
+    # print(solution(5, [19]))
+    print(solution(3, [7, 3, 5, 1]))
+    print(solution(5, [19, 14, 28]))
