@@ -88,23 +88,34 @@ def find_top(h, p):
     # post-transversal (left -> right -> root)
     # start from bottom
     current_level = h - 1
+    current_position_p = (-1, -1)
     while value <= max_nodes:
+        if value == p:
+            if current_level == 0:
+                return -1
+            current_position_p = (current_level, len(levels[current_level]))
         levels[current_level].append(int(value))
+
+        for level in levels:
+            print(level)
+        print('----------------------------')
+
         value += 1
         # after inserting the value check where to insert the next value
         continue_up = True
         while continue_up:
             # check current level for p
             try:
-                index_of_p = levels[current_level].index(p)
-                if current_level-1 < 0:
-                    return - 1
-                # check if the parent already reach the expected number of nodes
-                # round up so that we can get the correct number since the node can be the left node
-                # for e.g. 1 node -> we expect 1 node on the parent level but 1/2 = 0.5
-                expected_parent_level_nodes = int((index_of_p+1) / 2) + ((index_of_p+1) % 2 > 0)
-                if expected_parent_level_nodes == len(levels[current_level-1]):
-                    return levels[current_level-1][len(levels[current_level-1])-1]
+                level_of_p = current_position_p[0]
+                index_of_p = current_position_p[1]
+
+                if level_of_p >= 0 and index_of_p >= 0:
+                    # check if the parent already reach the expected number of nodes
+                    # round up so that we can get the correct number since the node can be the left node
+                    # for e.g. 1 node -> we expect 1 node on the parent level but 1/2 = 0.5
+                    expected_parent_level_nodes = int((index_of_p + 1) / 2) + ((index_of_p + 1) % 2 > 0)
+                    if expected_parent_level_nodes == len(levels[level_of_p - 1]):
+                        return levels[level_of_p - 1][len(levels[level_of_p - 1]) - 1]
             except ValueError:
                 # print("Cannot find " + str(p) + " at " + str(levels[current_level]))
                 pass
@@ -117,7 +128,7 @@ def find_top(h, p):
                 continue
             # if the number of parent node does not correspond the child nodes (1 parent to 2 child (left & right)
             # set current level to the level of the parent node to insert the node
-            elif expected_parent_level_nodes != len(levels[current_level-1]):
+            elif expected_parent_level_nodes != len(levels[current_level - 1]):
                 current_level -= 1
                 continue_up = False
                 continue
@@ -141,6 +152,8 @@ def solution(h, q):
 
 if __name__ == '__main__':
     # print(solution(3, [2]))
-    # print(solution(5, [19]))
+    # print(solution(5, [22]))
     print(solution(3, [7, 3, 5, 1]))
     print(solution(5, [19, 14, 28]))
+    print(solution(5, [19, 14, 22]))
+    # print(solution(10, [19, 14, 28]))
