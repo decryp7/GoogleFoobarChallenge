@@ -51,10 +51,80 @@ Use verify [file] to test your solution and see how it does. When you are finish
 """
 
 
+def find_top(h, p):
+    max_nodes = 2 ** h - 1
+
+    if p >= max_nodes:
+        return -1
+
+    left_most_nodes = [max_nodes]
+    value = max_nodes
+    while value > 1:
+        value = (value - 1) / 2
+        left_most_nodes.append(int(value))
+    left_most_nodes.sort()
+    # print(left_most_nodes)
+
+    right_most_nodes = []
+    for i in range(0, h):
+        right_most_nodes.append(max_nodes - i)
+    right_most_nodes.sort()
+    # print(right_most_nodes)
+
+    if p in left_most_nodes:
+        index = left_most_nodes.index(p)
+        return left_most_nodes[index + 1]
+
+    if p in right_most_nodes:
+        index = right_most_nodes.index(p)
+        return right_most_nodes[index + 1]
+
+    levels = []
+    for i in range(0, h):
+        levels.append([])
+
+    # post-transversal (left -> right -> root)
+    # start from bottom
+    current_level = h - 1
+    while value <= max_nodes:
+        levels[current_level].append(int(value))
+        value += 1
+        # check upper levels
+        continue_up = True
+        while continue_up:
+            # print(str(current_level) + ' ' + str(levels[current_level]))
+            expected_parent_level_nodes1 = int(len(levels[current_level]) / 2)
+            # if hit the top, reset current level to bottom
+            if current_level == 0:
+                current_level = h - 1
+                continue_up = False
+                continue
+            # if the number of parent node does not correspond the child nodes (1 parent to 2 child (left & right)
+            # set current level to the level of the parent node to insert the node
+            elif expected_parent_level_nodes1 != len(levels[current_level-1]):
+                current_level -= 1
+                continue_up = False
+                continue
+            # continue to move up the mountain
+            else:
+                current_level -= 1
+
+        # print('Add next node at ' + str(current_level))
+        # print('-------------------------------')
+
+    for level in levels:
+        print(level)
+
+
 def solution(h, p):
-    pass
+    results = []
+    for i in p:
+        results.append(find_top(h, i))
+    return results
 
 
 if __name__ == '__main__':
-    print(solution(["1.11", "2.0.0", "1.2", "2", "0.1", "1.2.1", "1.1.1", "2.0"]))
-    print(solution(["1.1.2", "1.0", "1.3.3", "1.0.12", "1.0.2"]))
+    print(solution(5, [2]))
+    # print(solution(5, [29]))
+    # print(solution(3, [7, 3, 5, 1]))
+    # print(solution(5, [19, 14, 28]))
