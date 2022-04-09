@@ -79,6 +79,7 @@ def find_top(h, p):
         index = right_most_nodes.index(p)
         return right_most_nodes[index + 1]
 
+    value = 1
     # if we cannot find it in the left-most and right-most nodes
     # we should draw the tree and check one by one
     levels = []
