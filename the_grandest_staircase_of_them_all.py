@@ -102,7 +102,7 @@ def get_steps(bricks, minimum):
             #   3, 2, 1
             # not possible to break down 3 further
             # 4, 2
-            print((left, right))
+            # print((left, right))
             result += get_steps(left, right)
         left -= 1
         right += 1
