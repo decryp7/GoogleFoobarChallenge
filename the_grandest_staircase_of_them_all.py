@@ -68,11 +68,8 @@ Output:
 Use verify [file] to test your solution and see how it does. When you are finished editing your code, use submit [file] to submit your answer. If your solution passes the test cases, it will be removed from your home folder.
 """
 
-count = 0
 
-
-def get_steps(bricks, minimum):
-    global count
+def get_steps(bricks, minimum=0):
     if bricks < 3 or bricks > 200:
         return 0
 
@@ -96,22 +93,19 @@ def get_steps(bricks, minimum):
             #   3, 2, 1
             # not possible to break down 3 further
             # 4, 2
+            print((left, right))
             result += get_steps(left, right)
         left -= 1
         right += 1
-
-    if count < result:
-        count = result
-        print(count)
 
     return result
 
 
 def solution(n):
-    result = get_steps(n, 0)
+    result = get_steps(n)
 
     return result
 
 
 if __name__ == '__main__':
-    print(solution(200))
+    print(solution(3))
