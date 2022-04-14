@@ -29,7 +29,7 @@ I used the brute force method here which is populating the number one by one sta
 This took a lot of unnecessary scanning to insert the value sequentially although I do not continue to populate once I get the answer.
 Actually after drawing a few binary trees, I notices that I can recursively generate the tree from top to bottom.
 Left child node is always (2^3-1) and right child node is always (parent node value -1).
-<img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/ion_flux_relabeling.PNG" width="20%" height="20%">
+<img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/ion_flux_relabeling.PNG" width="50%" height="50%">
 
 
 ## Level 3 - 3 Challenges (Notice that the number of challenges matches the level number)
@@ -41,4 +41,5 @@ If your solution is not fast enough, it will fail the test cases.
 I was stumped for a while because my code was able to provide the correct value but it failed all the test cases.
 After trying with a hard coded solution (if n == 3: return 1) :P, it passes one of the test case which leads me to believe that speed is one of the hidden requirement in this level.
 Cleaned up the code by reducing unecessary logic and add caching. Manage to passed all the test cases. :)
-
+<img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/the_grandest_staircase_of_them_all_1.PNG" width="50%" height="50%">
+<img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/the_grandest_staircase_of_them_all_2.PNG" width="50%" height="50%">
