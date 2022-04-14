@@ -128,3 +128,4 @@ def solution(n):
 if __name__ == '__main__':
     for i in range(0, 202):
         print(f'Number of staircases for {i} bricks: {solution(i)}.')
+    print(f"Number of entries in cache: {len(cache)}")
