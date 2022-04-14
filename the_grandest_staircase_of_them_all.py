@@ -120,9 +120,7 @@ def get_steps(bricks, minimum):
 
 
 def solution(n):
-    result = get_steps(n, 0)
-
-    return result
+    return get_steps(n, 0)
 
 
 if __name__ == '__main__':
