@@ -78,7 +78,7 @@ Use verify [file] to test your solution and see how it does. When you are finish
 file] to submit your answer. If your solution passes the test cases, it will be removed from your home folder. """
 
 
-def get_steps(bricks, minimum=0):
+def get_steps(bricks, minimum):
     if bricks < 3 or bricks > 200:
         return 0
 
@@ -111,7 +111,7 @@ def get_steps(bricks, minimum=0):
 
 
 def solution(n):
-    result = get_steps(n)
+    result = get_steps(n, 0)
 
     return result
 
