@@ -100,11 +100,12 @@ def get_steps(bricks, minimum):
             # break down into the possible combinations for the left side
             # for example for bricks 6
             # 6
-            # 5, 1
-            # break the 5 into possible combinations
-            #   3, 2, 1
-            # not possible to break down 3 further
-            # 4, 2
+            #   5, 1
+            #   break the 5 into possible combinations
+            #       3, 2, 1
+            #       not possible to break down 3 further since we need to maintain the stairs
+            #   4, 2
+            #   not possible to break down further since we need to maintain the stairs
             # print((left, right))
             if (left, right) in cache:
                 result += cache[(left, right)]
