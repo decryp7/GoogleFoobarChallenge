@@ -1,10 +1,10 @@
 # Google Foobar Challenge
 
-Recently while I was brushing up on my python knowledge using Google search, I received a suprise message which appears under the search bar.
+Recently while I was brushing up on my python knowledge using Google search, I received a surprise message.
 It was the famous Google Foobar Challenge.
-In this repository, I document my experience and the solutions to the challenges.
+In this repository, I document my experience solving the Google Foobar Challenge.
 
-If you have any comments/improvements about the code, please feel free to contact me at my email (decrypt at decryptology.net).
+If you have any comments/improvements about my solutions, please feel free to contact me at my email (decrypt at decryptology.net).
 I would absolutely love to learn more! :)
 
 ![Google foobar challenge](https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/GoogleFoobarChallenge.png)
