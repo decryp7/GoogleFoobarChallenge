@@ -77,8 +77,11 @@ Output:
 Use verify [file] to test your solution and see how it does. When you are finished editing your code, use submit [
 file] to submit your answer. If your solution passes the test cases, it will be removed from your home folder. """
 
+cache = {}
+
 
 def get_steps(bricks, minimum):
+    global cache
     if bricks < 3 or bricks > 200:
         return 0
 
@@ -103,7 +106,12 @@ def get_steps(bricks, minimum):
             # not possible to break down 3 further
             # 4, 2
             # print((left, right))
-            result += get_steps(left, right)
+            if (left, right) in cache:
+                result += cache[(left, right)]
+            else:
+                inner_result = get_steps(left, right)
+                cache[(left, right)] = inner_result
+                result += inner_result
         left -= 1
         right += 1
 
@@ -117,4 +125,4 @@ def solution(n):
 
 
 if __name__ == '__main__':
-    print(solution(3))
+    print(solution(200))
