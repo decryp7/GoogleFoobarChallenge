@@ -125,4 +125,5 @@ def solution(n):
 
 
 if __name__ == '__main__':
-    print(solution(200))
+    for i in range(0, 202):
+        print(f'Number of staircases for {i} bricks: {solution(i)}.')
