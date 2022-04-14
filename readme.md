@@ -47,7 +47,7 @@ I also noticed that in this level it is not enough just to have a solution which
 If your solution is not fast enough, it will fail the test cases.  
 I was stumped for a while because my code was able to provide the correct value but it failed all the test cases.  
 After trying with a hard coded solution (if n == 3: return 1) **:P**, it passes one of the test case which leads me to believe that speed is one of the hidden requirement in this level.  
-Cleaned up the code by reducing unecessary logic and add caching. Manage to passed all the test cases. **:)**  
-But I wonder if my solution is correct. Looks like it is looking for some complicated formula. **:(**  
+Cleaned up the code by reducing unecessary logic and added caching. And managed to passed all the test cases this time round. **:)**  
+But I wondered if my solution is correct. Looked like some complicated formula may be involved. **:(**  
 <img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/the_grandest_staircase_of_them_all_1.PNG" width="50%" height="50%">
 <img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/the_grandest_staircase_of_them_all_2.PNG" width="50%" height="50%">
