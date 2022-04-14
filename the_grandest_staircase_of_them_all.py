@@ -68,37 +68,50 @@ Output:
 Use verify [file] to test your solution and see how it does. When you are finished editing your code, use submit [file] to submit your answer. If your solution passes the test cases, it will be removed from your home folder.
 """
 
-brick_symbol = '#'
+count = 0
 
 
-def print_steps(steps):
-    print('\n----------------------------------------------')
-    for i in range(0, len(steps)):
-        print(steps[i])
-    print('----------------------------------------------\n')
+def get_steps(bricks, minimum):
+    global count
+    if bricks < 3 or bricks > 200:
+        return 0
 
+    result = 0
 
-def check_levels_descending(steps):
-    if len(steps) < 2:
-        return True
+    left = bricks
+    right = 0
 
-    for i in range(0, len(steps) - 1):
-        if len(steps[i]) <= len(steps[i+1]):
-            return False
-    return True
+    left -= minimum + 1
+    right += minimum + 1
+
+    # 5, 0, 1
+    while left > right:
+        if right > minimum:
+            result += 1
+            # break down into the possible combinations for the left side
+            # for example for bricks 6
+            # 6
+            # 5, 1
+            # break the 5 into possible combinations
+            #   3, 2, 1
+            # not possible to break down 3 further
+            # 4, 2
+            result += get_steps(left, right)
+        left -= 1
+        right += 1
+
+    if count < result:
+        count = result
+        print(count)
+
+    return result
 
 
 def solution(n):
-    if n < 3 or n > 200:
-        return 0
-
-    # minimum 2 steps for a staircase
-    steps = [[brick_symbol] * n, []]
-
-    result = 0
+    result = get_steps(n, 0)
 
     return result
 
 
 if __name__ == '__main__':
-    print(solution(6))
+    print(solution(200))
