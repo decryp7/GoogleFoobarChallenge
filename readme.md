@@ -31,7 +31,7 @@ This took me a while because I have to switch back to learning mode and understa
 I used the brute force method here which is populating the number one by one starting from 1 to max node value(2^h-1). *h is height of tree*  
 My current solution used a lot of unnecessary scanning to insert the value sequentially although I do not continue to populate once I get the answer.  
 Actually after drawing a few binary trees, I noticed that I can recursively generate the tree from top to bottom.  
-Left child node is always (2^h-1) and right child node is always (parent node value -1).  
+Left child node is always (parent node value - 2^h) and right child node is always (parent node value -1).  
 Definitely there is a lot of room for improvement in my current solution.  
 My thought was only to pass all the test cases and submit. **:P**  
 <img src="https://dev.decryptology.net/decryp7/GoogleFoobarChallenge/raw/branch/master/ion_flux_relabeling.PNG" width="50%" height="50%">  
